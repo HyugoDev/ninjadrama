@@ -1,0 +1,27 @@
+---
+import { HomeIcon } from "@heroicons/react/24/outline";
+import { ArchiveBoxIcon } from "@heroicons/react/24/outline";
+import { UserIcon } from "@heroicons/react/24/outline";
+---
+
+<nav class="fixed bottom-2 left-0 right-0 flex justify-center z-50">
+  <div class="bg-color-5 h-10 w-64 rounded-md flex justify-center items-center">
+    <ul class="grid grid-cols-3 grid-rows-1 gap-10">
+      <li>
+        <a href="/">
+          <HomeIcon className="w-8" />
+        </a>
+      </li>
+      <li>
+        <a href="/anime/directorio">
+          <ArchiveBoxIcon className="w-8" />
+        </a>
+      </li>
+      <li>
+        <a href="/perfil">
+          <UserIcon />
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
