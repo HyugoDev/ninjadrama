@@ -2,53 +2,14 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
 
-import { type InfoAnime } from '@type/InfoAnime'
-import { type Episodios } from '@type/Episodios'
-
-function classNames(...classes: (string | boolean)[]) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-interface Character {
-  id: number;
-  name: string;
-  role: string;
-  image: string;
-}
+export default function Info({ dataAnime, episodes }) {
 
-interface RelatedItem {
-  title: string;
-  poster: string;
-  type: string;
-}
 
-interface Episode {
-  episode: number;
-  id: string;
-}
-
-interface InfoPros {
-  dataAnime: {
-    title: string;
-    poster: string;
-    status: string;
-    rating: string;
-    synopsis: string;
-    genres: string[];
-    moreInfo: { totalEpisodes: number }[];
-    characters: Character[];
-    related: RelatedItem[];
-  };
-  episodes: { episodes: Episode[] };
-}
-interface Data {
-  characters: Character[];
-  related: RelatedItem[];
-  episodes: Episode[];
-}
-
-const Info: React.FC<InfoPros> = ({ dataAnime, episodes }: InfoPros) => {
-  const [data] = useState<Data>({
+  const [data] = useState({
     characters: dataAnime.characters,
     related: dataAnime.related,
     episodes: episodes.episodes,
@@ -208,4 +169,3 @@ const Info: React.FC<InfoPros> = ({ dataAnime, episodes }: InfoPros) => {
     </section >
   )
 }
-export default Info;

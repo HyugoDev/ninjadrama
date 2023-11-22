@@ -1,16 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Info from "@components/Info.tsx";
-import { getInfoAnime, getEpisodes } from "@lib/Anime.ts";
-import { type InfoAnime } from "@type/InfoAnime";
-import type { Episodios } from "@type/Episodios";
+import Info from "@components/Info.jsx";
+import { getInfoAnime, getEpisodes } from "@lib/Anime.js";
 
 const { id } = Astro.params;
 
-const DataInfo = (await getInfoAnime(id)) as InfoAnime;
-const Episodes = (await getEpisodes(id)) as Episodios;
+const DataInfo = await getInfoAnime(id);
+const Episodes = await getEpisodes(id);
 ---
 
 <Layout title=`${id}`>
-  <Info dataAnime={DataInfo} episodes={Episodes} />
+  <Info dataAnime={DataInfo} episodes={Episodes} client:visible />
 </Layout>

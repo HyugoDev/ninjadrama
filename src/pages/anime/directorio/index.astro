@@ -1,9 +1,8 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import { getDirectory } from "@lib/Anime";
-import { type Directory } from "@type/Directorio";
 
-const { directory } = (await getDirectory()) as Directory;
+const { directory } = await getDirectory();
 ---
 
 <Layout title="Directorio">
@@ -69,4 +68,3 @@ const { directory } = (await getDirectory()) as Directory;
     </div>
   </section>
 </Layout>
- @type/Directorio
