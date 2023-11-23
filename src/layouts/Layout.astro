@@ -30,6 +30,7 @@ const { title } = Astro.props;
 			}
 			html {
 				font-family: sans-serif;
+				width: 100%;
 			}
 			code {
 				font-family:
@@ -43,7 +44,6 @@ const { title } = Astro.props;
 					monospace;
 			}
 			* {
-				box-sizing: border-box;
 				margin: 0;
 				padding: 0;
 				list-style: none;
@@ -52,8 +52,9 @@ const { title } = Astro.props;
 
 			body::-webkit-scrollbar {
 				background-color: transparent;
+				width: 0;
+				height: 0;
 			}
-
 			.transparentScrollbar::-webkit-scrollbar {
 				background-color: transparent;
 				width: 0;

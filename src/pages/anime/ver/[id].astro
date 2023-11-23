@@ -1,0 +1,14 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Ver from "@components/Ver.jsx";
+
+import { getAnimeServers } from "@lib/Anime";
+
+const { id } = Astro.params;
+
+const DataServer = await getAnimeServers(id);
+---
+
+<Layout title=`${id}`>
+  <Ver dataserver={DataServer} client:visible />
+</Layout>

@@ -153,7 +153,7 @@ export default function Info({ dataAnime, episodes }) {
                                 Episode {episode.episode}
                               </h3>
 
-                              <a href={episode.id}>Watch Episode</a>
+                              <a href={`/anime/${episode.id}`}>Watch Episode</a>
                             </li>
                           ))}
                         </ul>

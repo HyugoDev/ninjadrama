@@ -9,7 +9,12 @@ export default {
 			'color-3': '#95212e',
 			'color-4': '#76262e',
 			'color-5': '#572b2f',
+			'white': '#FFFFFF'
+
 		},
+		// height: {
+		// 	'128': '32rem',
+		// }
 	},
 	plugins: [
 

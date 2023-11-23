@@ -52,11 +52,9 @@ export async function getEpisodes(title) {
 
 
 export async function getAnimeServers(id) {
-  const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}getAnimeServers/${id}`)
+  const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}getAnimeServers/ver/${id}`)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
+
 
   return res.json()
 
