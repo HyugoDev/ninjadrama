@@ -1,6 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
-
+import { Image } from "astro:assets";
 import { getLastEpisodes } from "@lib/Anime.js";
 
 const { episodes } = await getLastEpisodes();
@@ -12,19 +12,21 @@ const { episodes } = await getLastEpisodes();
 	>
 		<h2 class="text-2xl mb-6 text-center">Nuevos Episodios</h2>
 		<div
-			class="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:gap-x-8"
+			class="grid grid-cols-3 gap-x-6 gap-y-4 sm:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 xl:gap-x-8"
 		>
 			{
 				episodes.map((anime) => (
 					<a
 						href={`/anime/${anime.id}`}
-						class="group shadow bg-orange-100 borde rounded-lg"
+						class="group shadow bg-gray-950 borde rounded-lg"
 					>
-						<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-							<img
+						<div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg  xl:aspect-h-8 xl:aspect-w-7">
+							<Image
 								src={`data:image/png;base64,${anime.image}`}
 								alt={anime.title}
-								class="h-full w-full object-cover object-center group-hover:opacity-75"
+								width={184}
+								height={50}
+								class="w-max object-cover object-center group-hover:opacity-75"
 							/>
 						</div>
 						<h3 class="ml-1 text-sm overflow-hidden truncate text-center">

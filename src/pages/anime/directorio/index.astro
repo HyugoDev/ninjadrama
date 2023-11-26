@@ -1,67 +1,70 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
 import { getDirectory } from "@lib/Anime";
+import { StarIcon } from "@heroicons/react/20/solid";
+import datajson from "../../../../pruebas/directorio.json";
+const { directory } = datajson; //await getDirectory();
+function corregirUrl(url: string): string {
+  // Reemplazar "hhttps://" con "https://"
+  return url.replace("hhttps://", "https://");
+}
 
-const { directory } = await getDirectory();
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 ---
 
 <Layout title="Directorio">
   <section class="mx-auto max-w-1xl px-4 py-16 sm:px-6">
     <div
-      class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+      class="grid grid-cols-1 gap-y-10 xl:grid-cols-2 xl:gap-x-8 justify-items-center"
     >
       {
         directory.map((anime) => (
-          <article
-            class="w-80 h-auto text-start overflow-hidden rounded-xl relative transform 
-            hover:-translate-y-2 transition ease-in-out duration-700 shadow-lg 
-            hover:shadow-2xl hover:h-auto bg-gradient-to-t from-black via-gray-900 to-transparent"
-          >
-            <a
-              href={`/anime/info/${anime.title}`}
-              class="absolute inset-0 z-10 transition duration-300 ease-in-out bg-gradient-to-t from-black via-gray-900 to-transparent"
-            />
-            <div class="relative cursor-pointer group z-10 m-3 h-max  ">
-              {/* <div class="h-32"></div> */}
-              <div class="space-y-6">
-                <div class="flex flex-col space-y-2 m-2 mt-36">
-                  <h3 class="text-2xl font-bold ">{anime.title}</h3>
+          <article class="w-max h-max rounded-md shadow-lg bg-gray-950 border-gray-300 border">
+            <div class="md:flex px-4 leading-none max-w-4xl ">
+              <a
+                href={`/anime/info/${anime.title}`}
+                class="flex-none flex flex-col items-center"
+              >
+                <Image
+                  src={corregirUrl(anime.poster)}
+                  alt={anime.title}
+                  width={200}
+                  height={150}
+                  class=" object-cover object-center  rounded-md shadow-2xl transform -translate-y-4 border-2 border-gray-300"
+                />
+                <span class="text-white m-0 text-sm">{anime.type}</span>
+                <span class="flex text-md mb-1">
+                  {[0, 1, 2, 3, 4].map((rating) => (
+                    <StarIcon
+                      className={classNames(
+                        parseInt(anime.score) > rating
+                          ? "text-orange-600"
+                          : "text-gray-200",
+                        "h-5 w-5 flex-shrink-0",
+                      )}
+                      aria-hidden="true"
+                    />
+                  ))}
+                </span>
+              </a>
 
-                  {/* generos */}
-                  <div class="text-xs text-gray-400 grid grid-cols-1 gap-x-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {anime.genres.map((generos) => (
-                      <span>{generos}</span>
-                    ))}
-                  </div>
+              <div class="flex-col text-gray-300">
+                <p class="m-2 text-2xl font-bold">{anime.title}</p>
+                <hr class="hr-text" data-content="" />
+                <div class="text-md flex justify-between px-4 my-2 gap-1">
+                  {anime.genres.map((generos) => (
+                    <span class="font-bold">{generos}</span>
+                  ))}
+                  <span class="font-bold" />
                 </div>
-
-                {/* Info */}
-                <div class="flex flex-row justify-around datos">
-                  <div class="flex flex-col datos_col">
-                    <div class="text-sm text-gray-400">Popularity:</div>
-                    <div class="popularity">{anime.score}/10</div>
-                  </div>
-                  <div class="flex flex-col datos_col">
-                    <div class="text-sm text-gray-400">Tipo:</div>
-                    <div class="release">{anime.type}</div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                {/* <div className="flex flex-col overview">
-                    <div className="text-xs text-gray-400 mb-2">Description:</div>
-                    <p className=" text-xs overflow-y-hidden text-overflow: ellipsis; ">
-                      {anime.description}
-                    </p>
-                  </div> */}
+                <p class="hidden md:block px-4 my-4 text-sm text-left tex">
+                  {anime.description}
+                </p>
               </div>
-              {/* <div data-countdown="2021-09-15" class="absolute inset-x-0 top-0 pt-5 w-full mx-auto text-2xl uppercase text-center drop-shadow-sm font-bold text-white">00 Days 00:00:00</div> */}
             </div>
-            <img
-              src={anime.poster}
-              alt={anime.title}
-              class="absolute inset-0  w-full  object-cover"
-            />
           </article>
         ))
       }

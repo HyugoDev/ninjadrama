@@ -70,6 +70,7 @@ export default function Ver({ dataserver }) {
           title={selected.id}
           controls
           className='aspect-video text-white'
+
         />
       </article>
     </section>

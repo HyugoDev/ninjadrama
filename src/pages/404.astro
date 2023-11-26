@@ -1,12 +1,19 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import { Image } from "astro:assets";
 ---
 
 <Layout title="Not Found Error 404">
   <div class="text-color-2">
     <h2>Not Found</h2>
+    <Image
+      alt="404"
+      src="/404-anime-girl.gif"
+      width={184}
+      height={100}
+      class="object-cover object-center group-hover:opacity-75"
+    />
     <p>404</p>
-    <img alt="404" class="" src="./404-anime-girl.gif" />
   </div>
 </Layout>
 

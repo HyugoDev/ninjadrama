@@ -1,35 +1,50 @@
 
 //lastEpisodes
+
 export async function getLastEpisodes() {
-  const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}LastEpisodes`)
+  try {
+    const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}LastEpisodes`)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    if (!res.ok) {
+      throw new Error('Error al obtener datos');
+    }
+
+    return await res.json();
+
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
   }
-
-  return res.json()
 }
+
+
+
+
+
 
 //allDirectory
+
 export async function getDirectory() {
-  const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}allDirectory`)
+  try {
+    const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}allDirectory`)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+    return await res.json();
+
+  } catch (error) {
+    console.error('Error en la solicitud:', error);
   }
-
-  return res.json()
-
 }
+
+
+
+
+
+
+
 
 //moreInfo/:title
 
 export async function getInfoAnime(title) {
   const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}moreInfo/${title}`)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
 
   return res.json()
 }
@@ -39,10 +54,6 @@ export async function getInfoAnime(title) {
 
 export async function getEpisodes(title) {
   const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}getEpisodes/${title}`)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
 
   return res.json()
 }

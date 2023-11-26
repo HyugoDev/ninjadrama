@@ -5,15 +5,15 @@ import { UserIcon } from "@heroicons/react/24/outline";
 ---
 
 <nav class="fixed bottom-2 left-0 right-0 flex justify-center z-50">
-  <div class="bg-color-5 h-10 w-64 rounded-md flex justify-center items-center">
-    <ul class="grid grid-cols-3 grid-rows-1 gap-10">
+  <div class="bg-black h-10 w-64 rounded-md flex justify-center items-center">
+    <ul class="flex flex-row gap-10">
       <li>
         <a href="/">
           <HomeIcon className="w-8" />
         </a>
       </li>
       <li>
-        <a href="/anime/directorio">
+        <a href="/anime/directorio" data-astro-prefetch="viewport">
           <ArchiveBoxIcon className="w-8" />
         </a>
       </li>
