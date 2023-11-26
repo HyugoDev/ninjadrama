@@ -3,8 +3,9 @@ import Layout from "@layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getDirectory } from "@lib/Anime";
 import { StarIcon } from "@heroicons/react/20/solid";
-import datajson from "../../../../pruebas/directorio.json";
-const { directory } = datajson; //await getDirectory();
+//import datajson from "../../../../pruebas/directorio.json";
+const { directory } = await getDirectory(); //datajson;
+
 function corregirUrl(url: string): string {
   // Reemplazar "hhttps://" con "https://"
   return url.replace("hhttps://", "https://");
