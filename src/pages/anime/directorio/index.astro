@@ -14,6 +14,8 @@ function corregirUrl(url: string): string {
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
+export const prerender = true;
 ---
 
 <Layout title="Directorio">
@@ -23,7 +25,10 @@ function classNames(...classes) {
     >
       {
         directory.map((anime) => (
-          <article class="w-max h-max rounded-md shadow-lg bg-gray-950 border-gray-300 border">
+          <article
+            class="w-max h-max rounded-md shadow-lg bg-gray-950 border-gray-300 border"
+            transition:persist
+          >
             <div class="md:flex px-4 leading-none max-w-4xl ">
               <a
                 href={`/anime/info/${anime.title}`}
