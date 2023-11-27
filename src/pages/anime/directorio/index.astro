@@ -1,79 +1,14 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { Image } from "astro:assets";
+import CardDirectorio from "@components/CardDirectorio.astro";
 import { getDirectory } from "@lib/Anime";
-import { StarIcon } from "@heroicons/react/20/solid";
-//import datajson from "../../../../pruebas/directorio.json";
+
+//import Directory from "../../../../pruebas/directorio.json";
 const { directory } = await getDirectory(); //datajson;
 
-function corregirUrl(url: string): string {
-  // Reemplazar "hhttps://" con "https://"
-  return url.replace("hhttps://", "https://");
-}
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export const prerender = true;
+//export const prerender = true;
 ---
 
 <Layout title="Directorio">
-  <section class="mx-auto max-w-1xl px-4 py-16 sm:px-6">
-    <div
-      class="grid grid-cols-1 gap-y-10 xl:grid-cols-2 xl:gap-x-8 justify-items-center"
-    >
-      {
-        directory.map((anime) => (
-          <article
-            class="w-max h-max rounded-md shadow-lg bg-gray-950 border-gray-300 border"
-            transition:persist
-          >
-            <div class="md:flex px-4 leading-none max-w-4xl ">
-              <a
-                href={`/anime/info/${anime.title}`}
-                class="flex-none flex flex-col items-center"
-              >
-                <Image
-                  src={corregirUrl(anime.poster)}
-                  alt={anime.title}
-                  width={200}
-                  height={150}
-                  class=" object-cover object-center  rounded-md shadow-2xl transform -translate-y-4 border-2 border-gray-300"
-                />
-                <span class="text-white m-0 text-sm">{anime.type}</span>
-                <span class="flex text-md mb-1">
-                  {[0, 1, 2, 3, 4].map((rating) => (
-                    <StarIcon
-                      className={classNames(
-                        parseInt(anime.score) > rating
-                          ? "text-orange-600"
-                          : "text-gray-200",
-                        "h-5 w-5 flex-shrink-0",
-                      )}
-                      aria-hidden="true"
-                    />
-                  ))}
-                </span>
-              </a>
-
-              <div class="flex-col text-gray-300">
-                <p class="m-2 text-2xl font-bold">{anime.title}</p>
-                <hr class="hr-text" data-content="" />
-                <div class="text-md flex justify-between px-4 my-2 gap-1">
-                  {anime.genres.map((generos) => (
-                    <span class="font-bold">{generos}</span>
-                  ))}
-                  <span class="font-bold" />
-                </div>
-                <p class="hidden md:block px-4 my-4 text-sm text-left tex">
-                  {anime.description}
-                </p>
-              </div>
-            </div>
-          </article>
-        ))
-      }
-    </div>
-  </section>
+  <CardDirectorio directory={directory} />
 </Layout>

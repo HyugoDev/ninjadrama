@@ -1,0 +1,64 @@
+---
+import { StarIcon } from "@heroicons/react/20/solid";
+import { Image } from "astro:assets";
+
+function corregirUrl(url: string): string {
+// Reemplazar "hhttps://" con "https://"
+return url.replace("hhttps://", "https://");
+}
+
+function classNames(...classes) {
+return classes.filter(Boolean).join(" ");
+}
+
+interface Props {
+directory: [any];
+}
+
+const { directory } = Astro.props;
+---
+
+{
+directory ? (
+<section class="mx-auto max-w-1xl px-4 m-10 mt-14 sm:px-6">
+  <div class="flex flex-wrap justify-center gap-3">
+    {directory.map((anime) => (
+    <article class="w-96 rounded-md shadow-lg bg-gray-950 border-gray-300 border">
+      <div class="flex flex-col  leading-none ">
+        <a href={`/anime/info/${anime.title}`} class="flex-none flex flex-col items-center">
+          <Image src={corregirUrl(anime.poster)} alt={anime.title} width={200} height={150}
+            class=" object-cover object-center  rounded-md shadow-2xl transform -translate-y-4 border-2 border-gray-300" />
+          <span class="text-white m-0 text-sm">{anime.type}</span>
+          <span class="flex text-md mb-1">
+            {[0, 1, 2, 3, 4].map((rating) => (
+            <StarIcon className={classNames( parseInt(anime.score)> rating
+              ? "text-orange-600"
+              : "text-gray-200",
+              "h-5 w-5 flex-shrink-0",
+              )}
+              aria-hidden="true"
+              />
+              ))}
+          </span>
+        </a>
+
+        <div class="flex-col  text-center">
+          <p class="m-2 text-2xl font-bold">{anime.title}</p>
+          <hr class="hr-text" data-content="" />
+          <div class="text-md flex gap-1 m-1 flex-wrap justify-center">
+            {anime.genres.map((generos) => (
+            <span class="font-bold">{generos}</span>
+            ))}
+            <span class="font-bold" />
+          </div>
+          <!-- <p class="hidden md:block px-4 my-4 text-sm text-left tex">{anime.description}</p> -->
+        </div>
+      </div>
+    </article>
+    ))}
+  </div>
+</section>
+) : (
+<p>cargando</p>
+)
+}

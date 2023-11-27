@@ -1,6 +1,8 @@
 
 //lastEpisodes
 
+import { promise } from "astro/zod";
+
 export async function getLastEpisodes() {
   try {
     const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}LastEpisodes`)
