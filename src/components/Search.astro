@@ -1,0 +1,25 @@
+---
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+
+const handleSubmit = async (e: any) => {
+  e.preventDefault();
+  const data = await Astro.request.formData();
+  const search = data.get("Search");
+  Astro.redirect(`/anime/directorio/buscar/${search}`);
+};
+---
+
+<form method="POST" class="flex flex-row items-center">
+  <input
+    type="search"
+    name="Search"
+    id="Search"
+    class="bg-black"
+    minlength="2"
+    maxlength="24"
+  />
+
+  <button onclick="handleSubmit">
+    <MagnifyingGlassIcon className="w-5 " />
+  </button>
+</form>

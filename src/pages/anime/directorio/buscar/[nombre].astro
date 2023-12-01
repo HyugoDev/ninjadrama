@@ -1,0 +1,18 @@
+---
+import Layout from "@layouts/Layout.astro";
+import CardSearch from "@components/CardSearch.astro";
+import { getsearch } from "@lib/Anime.js";
+const { nombre } = Astro.params;
+
+const Busqueda = await getsearch(nombre);
+---
+
+<Layout title={nombre}>
+  {
+    Busqueda.search ? (
+      <CardSearch search={Busqueda.search} />
+    ) : (
+      <span>No se encontro resultados</span>
+    )
+  }
+</Layout>

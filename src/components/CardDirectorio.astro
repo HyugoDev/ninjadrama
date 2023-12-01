@@ -11,15 +11,17 @@ function classNames(...classes) {
 return classes.filter(Boolean).join(" ");
 }
 
+
+
 interface Props {
-directory: [any];
+directory: [any],
 }
 
 const { directory } = Astro.props;
 ---
 
 {
-directory ? (
+
 <section class="mx-auto max-w-1xl px-4 m-10 mt-14 sm:px-6">
   <div class="flex flex-wrap justify-center gap-x-6 gap-y-10">
     {directory.map((anime) => (
@@ -58,7 +60,5 @@ directory ? (
     ))}
   </div>
 </section>
-) : (
-<p>cargando</p>
-)
+
 }

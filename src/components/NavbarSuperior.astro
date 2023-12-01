@@ -1,13 +1,15 @@
 ---
 import { Image } from "astro:assets";
+import Search from "./Search.jsx";
 ---
 
-<nav class="bg-color-5 w-full h-14 flex flex-col justify-center">
+<nav class="bg-color-5 w-full h-14 flex flex-row items-center justify-between">
   <Image
     src="/Logo2.png"
     alt="Logo"
     width={60}
     height={60}
-    class="object-cover object-center"
+    class="object-cover object-center ml-3"
   />
+  <Search client:visible />
 </nav>

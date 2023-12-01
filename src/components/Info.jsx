@@ -2,11 +2,13 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
 
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 export default function Info({ dataAnime, episodes }) {
+
 
 
   const [data] = useState({
@@ -84,7 +86,7 @@ export default function Info({ dataAnime, episodes }) {
             {/* tabs */}
             <div className="w-full max-w-xl px-2 py-16 sm:px-0 ">
               <Tab.Group>
-                <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
+                <Tab.List className="flex space-x-1 rounded-xl bg-slate-950 p-1">
                   {Object.keys(data).map((category) => (
                     <Tab
                       key={category}
@@ -93,7 +95,7 @@ export default function Info({ dataAnime, episodes }) {
                           'w-full rounded-lg py-2.5 text-sm font-medium leading-5 ',
                           'ring-white ring-opacity-60 ring-offset-2  focus:outline-none focus:ring-2',
                           selected
-                            ? 'bg-white shadow'
+                            ? 'bg-slate-700 shadow'
                             : 'text-white hover:bg-white/[0.12] hover:text-white'
                         )
                       }
@@ -102,13 +104,13 @@ export default function Info({ dataAnime, episodes }) {
                     </Tab>
                   ))}
                 </Tab.List>
-                <Tab.Panels className="mt-2 overflow-y-scroll h-96 w-full transparentScrollbar rounded-xl">
+                <Tab.Panels className="mt-2 overflow-y-scroll h-96 w-full transparentScrollbar rounded-xl ">
                   {Object.keys(data).map((category) => (
                     <Tab.Panel
                       key={category}
                       className={classNames(
-                        'rounded-xl bg-slate-900 p-3',
-                        'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2'
+                        'rounded-xl bg-slate-950 p-3',
+                        'ring-slate-700 ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2'
                       )}
                     >
                       {category === 'characters' && (
@@ -116,7 +118,7 @@ export default function Info({ dataAnime, episodes }) {
                           {data.characters.map((character) => (
                             <li
                               key={character.id}
-                              className="rounded-md p-3 hover:bg-gray-100 flex justify-center "
+                              className="rounded-md p-3 hover:bg-slate-700 flex justify-center "
                             >
                               <h3 className="text-sm font-medium leading-5 flex items-center ">
                                 {character.name}<p className='ml-5' >{character.role}</p>  <img src={character.image} alt={character.name} width={70} height={70} className='object-cover ml-5' />
@@ -129,8 +131,10 @@ export default function Info({ dataAnime, episodes }) {
                         <ul>
                           {data.related.map((item) => (
                             <li
-                              className="relative rounded-md p-3 hover:bg-gray-100"
+                              key={item.title}
+                              className="relative rounded-md p-3 hover:bg-slate-700"
                             >
+
                               <h3 className="text-sm font-medium leading-5">
                                 {item.title}
                               </h3>
@@ -138,6 +142,7 @@ export default function Info({ dataAnime, episodes }) {
                               <img src={item.poster} alt={item.title} width={80} height={80} />
 
                               <p>{item.type}</p>
+
                             </li>
                           ))}
                         </ul>
@@ -147,13 +152,13 @@ export default function Info({ dataAnime, episodes }) {
                           {data.episodes.map((episode, index) => (
                             <li
                               key={index}
-                              className="relative rounded-md p-3 hover:bg-gray-100"
+                              className="relative h-10 rounded-md hover:bg-slate-700 flex items-center"
                             >
-                              <h3 className="text-sm font-medium leading-5">
-                                Episode {episode.episode}
-                              </h3>
 
-                              <a href={`/anime/${episode.id}`}>Watch Episode</a>
+
+                              <a href={`/anime/${episode.id}`} className='ml-3'>Watch <span className="ml-1  ">
+                                Episode {episode.episode}
+                              </span></a>
                             </li>
                           ))}
                         </ul>

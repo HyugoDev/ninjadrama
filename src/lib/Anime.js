@@ -79,9 +79,7 @@ export async function getAnimeServers(id) {
 export async function getsearch(search) {
   const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}search/${search}`)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
+
 
   return res.json()
 
@@ -94,9 +92,7 @@ export async function getsearch(search) {
 export async function getvideos(channelId) {
   const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}videos/${channelId}`)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
+
 
   return res.json()
 
@@ -107,9 +103,7 @@ export async function getvideos(channelId) {
 export async function getAnimePlatforms() {
   const res = await fetch(`${import.meta.env.PUBLIC_API_ARUPPI}destAnimePlatforms`)
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
+
 
   return res.json()
 
