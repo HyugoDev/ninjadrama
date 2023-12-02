@@ -3,13 +3,13 @@ import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 
 
-import vercel from "@astrojs/vercel/edge";
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: "server",
-  adapter: vercelEdge({
+  adapter: vercel({
     maxDuration: 65
   }),
   prefetch: true
