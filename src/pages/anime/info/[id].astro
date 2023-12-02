@@ -7,10 +7,14 @@ const { id } = Astro.params;
 
 const DataInfo = await getInfoAnime(id);
 const Episodes = await getEpisodes(id);
-
-export const prerender = true;
 ---
 
 <Layout title=`${id}`>
-  <Info dataAnime={DataInfo} episodes={Episodes} client:visible />
+  {
+    DataInfo ? (
+      <Info dataAnime={DataInfo} episodes={Episodes} client:visible />
+    ) : (
+      <span>Cargando........</span>
+    )
+  }
 </Layout>
