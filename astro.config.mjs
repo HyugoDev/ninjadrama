@@ -1,15 +1,15 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-import netlify from "@astrojs/netlify/functions";
 
-import vercel from "@astrojs/vercel/serverless";
+
+import vercel from "@astrojs/vercel/edge";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: "server",
-  adapter: vercel({
+  adapter: vercelEdge({
     maxDuration: 65
   }),
   prefetch: true
