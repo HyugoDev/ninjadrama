@@ -12,7 +12,7 @@ const Episodes = await getEpisodes(id);
 <Layout title=`${id}`>
   {
     DataInfo ? (
-      <Info dataAnime={DataInfo} episodes={Episodes} client:visible />
+      <Info dataAnime={DataInfo} episodes={Episodes} client:load />
     ) : (
       <span>Cargando........</span>
     )
